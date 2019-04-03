@@ -24,6 +24,12 @@ public class RateLimiterAop {
 
     private static final Map<String, RateLimiter> RATE_LIMITER_MAP = new ConcurrentHashMap<>();
 
+    /**
+     * 环绕方法 直接扫描注解
+     * @param proceedingJoinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("@annotation(com.huihuang.annotation.RateLimiterAnnotation)")
     public Object currentLimiting(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
@@ -60,10 +66,13 @@ public class RateLimiterAop {
         }
     }
 
-    // 服务降级
+    /**
+     * 服务降级
+     * @return
+     * @throws IOException
+     */
     private Object serviceDowng() throws IOException {
         // 执行服务降级处理
-        System.out.println("执行降级方法,亲,服务器忙！请稍后重试!");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = attributes.getResponse();
         response.setHeader("Content-type", "text/html;charset=UTF-8");

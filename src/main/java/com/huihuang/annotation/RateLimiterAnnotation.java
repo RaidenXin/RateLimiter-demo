@@ -8,7 +8,10 @@ import java.util.concurrent.TimeUnit;
 @Documented
 public @interface RateLimiterAnnotation {
 
+    //生成令牌的速率
     double rate();
-    long timeout() ;
+    //超时时间
+    long timeout();
+    //超时时间类型
     TimeUnit TIME_UNIT();
 }
