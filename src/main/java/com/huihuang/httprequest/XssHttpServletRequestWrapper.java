@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
-
     private HttpServletRequest request;
 
     public XssHttpServletRequestWrapper(HttpServletRequest request) {

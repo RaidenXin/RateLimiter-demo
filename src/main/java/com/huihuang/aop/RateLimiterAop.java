@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RateLimiterAop {
 
+    //实际项目中可以使用Redis
     private static final Map<String, RateLimiter> RATE_LIMITER_MAP = new ConcurrentHashMap<>();
 
     /**
